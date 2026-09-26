@@ -1,27 +1,74 @@
-# The main program that runs
-from video_tools import get_video_info, extract_audio, extract_frame # goes into video_tools.py and brings the get_video_info function
 import os
+import uuid
 
+from fastapi import FastAPI, File, Form, UploadFile
 
-os.makedirs("output", exist_ok=True)
-get_video_info("test_video.mp4")
+from video import extract_audio
+from analyze import transcribe, analyze_transcript
 
-print()
-print("Extracting audio...")
+# create a fast api
+app = FastAPI()
 
-# extract audio
-extract_audio(
-    "test_video.mp4",
-    "output/audio.wav",
+# and make our working directory
+os.makedirs(
+    "output",
+    exist_ok=True,
 )
 
-# extract video frames
-extract_frame(
-    "test_video.mp4",
-    15.58,
-    "output/test_frame.jpg",
-)
+# create an analysis endpoint
+@app.post("/analyze")
+async def analyze_video(
+    video: UploadFile = File(...),
+    description: str = Form(""),
+):
 
-print("Frame extracted!")
+    # give the upload its own folder
+    job_id = str(uuid.uuid4())
 
-print("Done!")
+    job_folder = os.path.join(
+        "output",
+        job_id,
+    )
+
+    os.makedirs(
+        job_folder,
+        exist_ok=True,
+    )
+
+    # save the uploaded video
+    video_path = os.path.join(
+        job_folder,
+        "video.mp4",
+    )
+
+    audio_path = os.path.join(
+        job_folder,
+        "audio.wav",
+    )
+
+    with open(video_path, "wb") as file:
+        content = await video.read()
+        file.write(content)
+
+    # extract the audio from the video
+    extract_audio(
+        video_path,
+        audio_path,
+    )
+
+    transcript = transcribe(
+        audio_path,
+    )
+
+    analysis = analyze_transcript(
+        transcript,
+        description,
+    )
+
+    return {
+        "job_id": job_id,
+        "analyze": analysis,
+    }
+
+
+

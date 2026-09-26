@@ -1,0 +1,52 @@
+{
+  "moments": [
+    {
+      "start": 12.68,
+      "end": 15.52,
+      "sentiment": "neutral",
+      "description": "The speaker transitions into a hypothetical scenario.",
+      "edit": "No edit",
+      "sound_effect": "no sound effect"
+    },
+    {
+      "start": 15.52,
+      "end": 16.52,
+      "sentiment": "surprising",
+      "description": "The speaker says 'And it's shot.'",
+      "edit": "Reaction cut",
+      "sound_effect": "record scratch"
+    },
+    {
+      "start": 22.08,
+      "end": 23.6,
+      "sentiment": "positive",
+      "description": "The speaker mentions the respawn time.",
+      "edit": "Text emphasis",
+      "sound_effect": "ding"
+    },
+    {
+      "start": 26.0,
+      "end": 27.0,
+      "sentiment": "negative",
+      "description": "The speaker reacts to the number of kills.",
+      "edit": "Quick zoom",
+      "sound_effect": "buzz"
+    },
+    {
+      "start": 34.2,
+      "end": 35.2,
+      "sentiment": "exciting",
+      "description": "The speaker reacts to the kill count.",
+      "edit": "Replay",
+      "sound_effect": "whoosh"
+    },
+    {
+      "start": 40.2,
+      "end": 41.2,
+      "sentiment": "positive",
+      "description": "The speaker says 'I'm back invested.'",
+      "edit": "Reaction cut",
+      "sound_effect": "crowd cheer"
+    }
+  ]
+}
