@@ -9,13 +9,6 @@
 //   return res.json(); // { moments: [...] }
 // }
 
-const MOCK_BANK = [
-  { sentiment: 'funny', description: 'The speaker realizes they made a mistake.', edit_suggestion: 'Quick zoom on the reaction.', sound_effect_suggestion: 'record scratch' },
-  { sentiment: 'shocking', description: 'An unexpected reveal changes the tone.', edit_suggestion: 'Hard cut with a flash frame.', sound_effect_suggestion: 'dramatic sting' },
-  { sentiment: 'upset', description: 'A tense moment where the mood drops.', edit_suggestion: 'Slow fade with lowered music.', sound_effect_suggestion: 'low drone' },
-  { sentiment: 'funny', description: 'A lighthearted callback lands well.', edit_suggestion: 'Cut to a reaction shot.', sound_effect_suggestion: 'pop' },
-];
-
 export async function analyzeVideo(file, description, duration) {
   const form = new FormData();
   form.append('video', file);
