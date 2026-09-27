@@ -5,6 +5,7 @@ from fastapi import FastAPI, File, Form, UploadFile
 
 from video import extract_audio
 from analyze import transcribe, analyze_transcript
+from fastapi.middleware.cors import CORSMiddleware
 
 # create a fast api
 app = FastAPI()
@@ -13,6 +14,14 @@ app = FastAPI()
 os.makedirs(
     "output",
     exist_ok=True,
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173", "http://localhost:8000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # create an analysis endpoint
