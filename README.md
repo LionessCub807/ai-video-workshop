@@ -64,6 +64,29 @@ Timestamped Editing Suggestions
 
 Instead of manually searching through an entire video for editing opportunities, editors can use the generated suggestions as a starting point for their workflow.
 
+## 🛠️ Tech Stack
+
+Video Editor Enhancer uses a combination of AI, backend, and frontend technologies to analyze videos and present editing suggestions.
+
+| Technology | Purpose |
+| --- | --- |
+| **Python** | Core backend language used for video processing and application logic |
+| **FastAPI** | Provides the backend API and connects the frontend with the processing pipeline |
+| **Whisper** | Transcribes video audio into timestamped text for analysis |
+| **Ollama + Qwen** | Runs the language model locally to analyze transcripts and generate editing suggestions |
+| **React** | Builds the interactive frontend interface |
+| **Vite** | Provides the frontend development and build environment |
+
+### Processing Pipeline
+
+1. The user uploads or selects a video through the **React + Vite** frontend.
+2. The frontend sends the video to the **FastAPI** backend.
+3. **Whisper** transcribes the video's audio and generates timestamped text.
+4. The transcript is passed to **Qwen**, running locally through **Ollama**.
+5. Qwen analyzes the content and identifies moments that could benefit from an edit or sound effect.
+6. The backend returns the timestamps, recommendations, and reasoning to the frontend.
+7. The editor reviews the suggestions and decides which ones to use.
+
 ## Future Improvements
 
 Potential additions include:
