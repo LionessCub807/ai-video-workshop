@@ -16,6 +16,7 @@ os.makedirs(
     exist_ok=True,
 )
 
+# analyze endpoint
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173", "http://localhost:8000"],
